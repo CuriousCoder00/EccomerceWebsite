@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { IconButton, Box, Typography, useTheme, Button } from "@mui/material";
-import AddIcon from "@mui/material/Add";
-import RemoveIcon from "@mui/material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { shades } from "../Theme";
 import { addToCart } from "../state";
 import { useNavigate } from "react-router-dom";
 
-const Item = () => {
+const Item = ({ item, width }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
-  const [isHovered, setIsHovered] = useStarw();
+  const [isHovered, setIsHovered] = useState(false);
   const {
     palette: { neutral },
   } = useTheme();
@@ -38,20 +38,19 @@ const Item = () => {
           alt={item.name}
           width="300px"
           height="400px"
-          src={`http://localhost:1337${url}`}
+          src={`http://localhost:2000${url}`}
           onClick={() => navigate(`/item/${item.id}`)}
-          style={{ cursor: "poiner" }}
+          style={{ cursor: "pointer" }}
         />
         <Box
-          display={isHovered ? "blocked" : "none"}
+          display={isHovered ? "block" : "none"}
           position="absolute"
           bottom="10%"
           left="0"
           width="100%"
-          paddding="0 5%"
+          padding="0 5%"
         >
           <Box display="flex" justifyContent="space-between">
-            {/* AMOUNT */}
             <Box
               display="flex"
               alignItems="center"
@@ -66,26 +65,26 @@ const Item = () => {
                 <AddIcon />
               </IconButton>
             </Box>
-            {/* BUTTON */}
             <Button
               onClick={() => {
                 dispatch(addToCart({ item: { ...item, count } }));
               }}
               sx={{ backgroundColor: shades.primary[300], color: "white" }}
             >
-              Add to cart
+              Add to Cart
             </Button>
           </Box>
         </Box>
       </Box>
+
       <Box mt="3px">
-        <Typography varient="subtitle2" color={neutral.dark}>
+        <Typography variant="subtitle2" color={neutral.dark}>
           {category
             .replace(/([A-Z])/g, " $1")
-            .replace(/^./, (str) => str.toupperCase())}
+            .replace(/^./, (str) => str.toUpperCase())}
         </Typography>
         <Typography>{name}</Typography>
-        <Typography fontWeight="bold">{Price}</Typography>
+        <Typography fontWeight="bold">${price}</Typography>
       </Box>
     </Box>
   );

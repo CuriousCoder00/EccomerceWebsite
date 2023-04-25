@@ -8,7 +8,7 @@ import Payment from "./Payment";
 import Shipping from "./Shipping";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
-  "pk_test_51LgU7yConHioZHhlAcZdfDAnV9643a7N1CMpxlKtzI1AUWLsRyrord79GYzZQ6m8RzVnVQaHsgbvN1qSpiDegoPi006QkO0Mlc"
+  "pk_test_51N0ZddSJHTR2NjfBIuXTRDCO3z58eq703ZTA50XPfaNB3SG2mkxkZ8g65LPuZldS7fReXYF3UoT8TuGBQlXKXip300nc37EHO9"
 );
 
 const Checkout = () => {
